@@ -1,4 +1,3 @@
-
 export function dust (dust: number): unknown[] {
     if (dust <= 15) { // dust >= 0 &&
       // message, hex
