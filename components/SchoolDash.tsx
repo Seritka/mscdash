@@ -1,4 +1,3 @@
-import { getToday } from "../lib/utils"
 import React, { useMemo } from "react"
 import { useCookies } from "react-cookie"
 import { format } from "date-fns"
@@ -34,7 +33,7 @@ const SchoolDash = () => {
         <h1 style= {{ marginRight: '25px', fontWeight: 'bold', fontSize: '165px' }}>{new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours() === 0 ? '12' : new Date().getHours()}:{new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()}</h1>
       <div style={{ marginTop: '55px', fontSize: '45px' }}>
         <div style={{ fontWeight: 'bolder' }}>
-          {new Date().getMonth() + 1}월 {new Date().getDate()}일 {getToday()}
+          {new Date().getMonth() + 1}월 {new Date().getDate()}일 {new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', weekday: 'long' }).format(new Date())}
           <br/>
           {new Date().getHours() > 12 ? '오후' : '오전' }
         </div>

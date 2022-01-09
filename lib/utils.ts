@@ -12,14 +12,7 @@ export function dust (dust: number): unknown[] {
 
     return ['알수없음', '808080']
 }
-  
-export function getToday (): unknown {
-    const week = new Array(['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'])
-    const today = new Date().getDay()
-    const todayLabel = week[today]
-    return todayLabel
-}
-  
+
 export function dateFormat (dateLog: string, timeLog: string): unknown {
     const date = dateLog.split('_')
     const time = timeLog.split('_')
