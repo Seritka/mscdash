@@ -12,8 +12,8 @@ const SchoolDash = () => {
         const id = setInterval(() => {
             const meal = async () => {
               if (!cookies.meal) {
-                const data = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${KEY}&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7530135&MLSV_YMD=${format(new Date(), 'yyyyMMdd')}`).then(r => r.json())
-    
+                const data = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${KEY}&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7530135&MLSV_YMD=${format(new Date(), 'yyyyMMdd')}`).then(r => r.json()).catch(e=>{})
+
                 const now = new Date()
                 const date = new Date(now.setDate(now.getDate() + 1))
                 date.setHours(0, 0, 0, 0)
