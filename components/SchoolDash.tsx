@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 import { useCookies } from "react-cookie"
 import { format } from "date-fns"
 
@@ -7,6 +7,7 @@ const KEY = 'd7df428d3d4548d0940e2d7c3a7b61b6'
 
 const SchoolDash = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['meal'])
+    const [today, setDate] = useState(new Date())
 
     useMemo(() => {
         const id = setInterval(() => {
@@ -24,18 +25,25 @@ const SchoolDash = () => {
             }
             meal()
           }, 5000)
-        return () => clearInterval(id)
+        return () => { clearInterval(id) }
       }, [cookies.meal])
+
+    useMemo(() => {
+      const timer = setInterval(() => {
+        setDate(new Date())
+      }, 60 * 1000)
+      return () => { clearInterval(timer) }
+    }, [])
 
     return <div style={{ display: 'flex', flexDirection: 'column' }}>
     <h3 style={{ fontWeight: 'bolder', textAlign: 'center', fontSize: '40px' }}>현재 시각</h3>
       <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <h1 style= {{ marginRight: '25px', fontWeight: 'bold', fontSize: '165px' }}>{new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours() === 0 ? '12' : new Date().getHours()}:{new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()}</h1>
+        <h1 style= {{ marginRight: '25px', fontWeight: 'bold', fontSize: '165px' }}>{today.getHours() > 12 ? today.getHours() - 12 : today.getHours() === 0 ? '12' : today.getHours()}:{today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()}</h1>
       <div style={{ marginTop: '55px', fontSize: '45px' }}>
         <div style={{ fontWeight: 'bolder' }}>
-          {new Date().getMonth() + 1}월 {new Date().getDate()}일 {new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', weekday: 'long' }).format(new Date())}
+          {today.getMonth() + 1}월 {today.getDate()}일 {new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', weekday: 'long' }).format(today)}
           <br/>
-          {new Date().getHours() > 12 ? '오후' : '오전' }
+          {today.getHours() > 12 ? '오후' : '오전' }
         </div>
       </div>
   </div>

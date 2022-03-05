@@ -19,7 +19,7 @@ const AirDash = () => {
       const id = setInterval(() => {
         return setAdviceIndex(`명언${Math.floor(Math.random() * Object.keys(adviceMessages).length + 1)}`)
       }, 300000)
-      return () => clearInterval(id)
+      return () => { clearInterval(id) }
     }, [adviceIndex])
   
     useMemo(() => {
