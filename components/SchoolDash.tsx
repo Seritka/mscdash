@@ -31,7 +31,7 @@ const SchoolDash = () => {
     useMemo(() => {
       const timer = setInterval(() => {
         setDate(new Date())
-      }, 60 * 1000)
+      }, 1000)
       return () => { clearInterval(timer) }
     }, [])
 
